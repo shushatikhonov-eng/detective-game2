@@ -1,5 +1,5 @@
 /* Вставьте сюда конфигурацию Firebase Web App. Пока null — сайт работает в одиночном режиме. */
-window.firebaseConfig = {
+window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyCyXp3kvFT4IQnJT7Oavrxq5jGQv3Xd0Q0",
   authDomain: "wallace-detective-web.firebaseapp.com",
   projectId: "wallace-detective-web",
