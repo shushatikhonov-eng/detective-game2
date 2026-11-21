@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#242629"/><stop offset="1" stop-color="#08090b"/></linearGradient></defs>
+<rect width="720" height="560" fill="url(#bg)"/>
+<g opacity=".13" stroke="#eee" stroke-width="1"><path d="M0 20H720"/><path d="M0 38H720"/><path d="M0 56H720"/><path d="M0 74H720"/><path d="M0 92H720"/><path d="M0 110H720"/><path d="M0 128H720"/><path d="M0 146H720"/><path d="M0 164H720"/><path d="M0 182H720"/><path d="M0 200H720"/><path d="M0 218H720"/><path d="M0 236H720"/><path d="M0 254H720"/><path d="M0 272H720"/><path d="M0 290H720"/><path d="M0 308H720"/><path d="M0 326H720"/><path d="M0 344H720"/><path d="M0 362H720"/><path d="M0 380H720"/><path d="M0 398H720"/><path d="M0 416H720"/><path d="M0 434H720"/><path d="M0 452H720"/><path d="M0 470H720"/><path d="M0 488H720"/><path d="M0 506H720"/><path d="M0 524H720"/><path d="M0 542H720"/></g>
+<rect x="190" y="65" width="340" height="430" rx="4" fill="#d8cfbd"/><path d="M235 150H485M235 205H485M235 260H430M235 315H485M235 370H410" stroke="#333" stroke-width="8"/><circle cx="450" cy="425" r="45" fill="none" stroke="#9f302f" stroke-width="7"/><text x="450" y="438" text-anchor="middle" font-size="34" fill="#9f302f">E.M.</text>
+<path d="M34 34H686V526H34Z" fill="none" stroke="#85765f" stroke-width="2"/>
+<text x="38" y="45" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" fill="#c4ad85">CASE FILE / 031 · E3</text>
+<text x="38" y="510" font-family="Georgia,serif" font-size="24" fill="#eee7da">Страховой расчёт с инициалами E. M.</text>
+</svg>

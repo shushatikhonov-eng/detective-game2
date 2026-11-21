@@ -15,3 +15,6 @@
 .result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
 .result-actions button{min-width:190px;min-height:48px}
 @media(max-width:600px){.result-screen.active{padding:12px}.result-inner-noir{padding:18px}.result-inner-noir>p{font-size:17px}.result-photo-wrap img{max-height:34vh}.result-actions{flex-direction:column}.result-actions button{width:100%}}
+
+/* v8: only the active application screen may be visible. */
+.screen:not(.active){display:none!important}

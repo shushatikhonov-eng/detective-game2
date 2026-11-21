@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#242629"/><stop offset="1" stop-color="#08090b"/></linearGradient></defs>
+<rect width="720" height="560" fill="url(#bg)"/>
+<g opacity=".13" stroke="#eee" stroke-width="1"><path d="M0 20H720"/><path d="M0 38H720"/><path d="M0 56H720"/><path d="M0 74H720"/><path d="M0 92H720"/><path d="M0 110H720"/><path d="M0 128H720"/><path d="M0 146H720"/><path d="M0 164H720"/><path d="M0 182H720"/><path d="M0 200H720"/><path d="M0 218H720"/><path d="M0 236H720"/><path d="M0 254H720"/><path d="M0 272H720"/><path d="M0 290H720"/><path d="M0 308H720"/><path d="M0 326H720"/><path d="M0 344H720"/><path d="M0 362H720"/><path d="M0 380H720"/><path d="M0 398H720"/><path d="M0 416H720"/><path d="M0 434H720"/><path d="M0 452H720"/><path d="M0 470H720"/><path d="M0 488H720"/><path d="M0 506H720"/><path d="M0 524H720"/><path d="M0 542H720"/></g>
+<rect x="190" y="70" width="340" height="420" fill="#5b2524" stroke="#d9cfbb" stroke-width="7"/><path d="M240 70V490M285 150H480M285 210H480M285 270H480M285 330H480M285 390H480" stroke="#d9cfbb" stroke-width="5"/>
+<path d="M34 34H686V526H34Z" fill="none" stroke="#85765f" stroke-width="2"/>
+<text x="38" y="45" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" fill="#c4ad85">CASE FILE / 031 · E12</text>
+<text x="38" y="510" font-family="Georgia,serif" font-size="24" fill="#eee7da">Запись после увольнения</text>
+</svg>

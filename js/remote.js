@@ -16,6 +16,11 @@
  }
  function render(s){
   lastState=s;if(!s)return;
+  if(s.started){
+    $('connectionPanel').hidden=true;
+    controls.hidden=false;
+    status('Игра запущена на телевизоре.');
+  }
   $('remoteChapter').textContent=s.finished?'Расследование завершено':(GAME.chapters[s.chapter]?.title||'Ожидание');
   $('remoteProgress').textContent=`${Math.min(s.chapter+1,7)} / 7 глав · ${s.score||0} баллов`;
   $('remoteNotes').value=s.notes||'';
@@ -41,7 +46,11 @@
      const auth=authMod.getAuth(app);await authMod.signInAnonymously(auth);
      const database=dbMod.getDatabase(app);
      db={ref:p=>{const r=dbMod.ref(database,p);return{get:()=>dbMod.get(r),set:v=>dbMod.set(r,v),on:(ev,cb)=>ev==='value'?dbMod.onValue(r,cb):null};}};
-     db.ref('rooms/'+room+'/state').on('value',snap=>render(snap.val()));
+     db.ref('rooms/'+room+'/state').on('value',snap=>{
+      const s=snap.val();
+      render(s);
+      if(s?.started){$('connectionPanel').hidden=true;controls.hidden=false;}
+    });
      history.replaceState({},'',location.pathname+'?room='+encodeURIComponent(room));
      setConnectedUI();return true;
     }catch(e){status('Не удалось подключиться: '+e.message);db=null;return false;}
@@ -56,7 +65,7 @@
    const ok=await connect();
    if(!ok){startButton.disabled=false;return;}
    const sent=await send({type:'start'});
-   if(sent){startedRemote=true;$('connectionPanel').hidden=true;controls.hidden=false;}
+   if(sent){startedRemote=true;status('Команда отправлена. Ждём подтверждения телевизора…');}
    else startButton.disabled=false;
  };
  $('showMap').onclick=()=>send({type:'show_map'});
@@ -65,7 +74,7 @@
  $('confirmAnswer').onclick=()=>{if(selectedAnswer!==null){send({type:'answer',choice:selectedAnswer});selectedAnswer=null;$('confirmAnswer').disabled=true;}};
  $('nextButton').onclick=()=>send({type:'continue'});
  $('saveNotes').onclick=()=>send({type:'notes',notes:$('remoteNotes').value});
- $('showSources').onclick=()=>send({type:'open_sources'});
+
  if(bc)bc.onmessage=e=>{if(e.data?.kind==='state')render(e.data.state);};
  connect();
 })();
