@@ -15,6 +15,7 @@
   if(s.answers?.[s.chapter])selectedAnswer=null;
   lastState=s;
   const started=!!s.started,finished=!!s.finished,chapter=GAME.chapters[s.chapter],prior=s.answers?.[s.chapter],task=chapter?.task;
+  $('remoteShell').classList.toggle('game-active',started||finished);
   $('remoteChapter').textContent=finished?'Расследование завершено':started?(chapter?.title||'Глава'):'Ожидание начала расследования';
   $('remoteProgress').textContent=`${started?Math.min(s.chapter+1,GAME.chapters.length):0} / ${GAME.chapters.length} глав · ${s.score||0} баллов`;
   $('startButton').classList.toggle('hidden',started||finished);
