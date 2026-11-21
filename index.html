@@ -1,8 +1,106 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08090b"><title>ДЕЛО № 031 — Последний ход</title><link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css?v=10"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></head><body class="tv-body">
-<header class="topbar"><div class="brand"><span class="brand-mark">№</span><div><div class="brand-name">CASE FILES / 031</div><div class="eyebrow">LIVERPOOL · 1931</div></div></div><div class="top-meta"><span id="roomDisplay">ROOM: WALLACE31</span><span><i class="status-dot"></i><b id="connectionLabel">LOCAL MODE</b></span><span id="clockLabel">02:20:00</span></div></header>
-<main id="app"><section id="introScreen" class="screen intro active"><div class="intro-poster"><img class="poster-art" src="assets/images/noir-poster.png" alt="Авторская нуарная сцена: Ливерпуль ночью"><div class="poster-kicker">AN UNSOLVED LIVERPOOL MURDER</div><div class="poster-title">ПОСЛЕДНИЙ<br><em>ХОД</em></div><div class="poster-rule"></div><p>ДЕЛО № 031 · 20 ЯНВАРЯ 1931</p></div><div class="intro-copy"><div class="eyebrow">АРХИВНОЕ РАССЛЕДОВАНИЕ</div><p>20 января 1931 года Джулия Уоллес была найдена убитой в собственном доме в Ливерпуле. Накануне неизвестный оставил странное телефонное сообщение. Её муж был осуждён — и освобождён после отмены приговора.</p><div class="intro-meta"><span>РЕАЛЬНОЕ ДЕЛО</span><span>7 ГЛАВ</span><span>2–3 ЧАСА</span><span>КОМАНДНОЕ РАССЛЕДОВАНИЕ</span></div><button class="primary" id="startGame">НАЧАТЬ РАССЛЕДОВАНИЕ →</button><p class="intro-foot">Все участники — одна следственная группа. Ваша задача — проверить доказательства и вынести обоснованный вердикт.</p></div></section>
-<section id="gameScreen" class="screen game-screen"><div class="chapter-head"><div><div class="eyebrow" id="chapterKicker">ГЛАВА 01</div><h1 id="chapterTitle">Ночь в Wolverton Street</h1></div><div class="head-right"><div class="progress-wrap"><div class="progress-label"><span>ХОД РАССЛЕДОВАНИЯ</span><span id="progressText">1 / 7</span></div><div class="progress"><span id="progressBar"></span></div></div><div class="time-chip" id="chapterTime">15 MIN</div></div></div>
-<div class="game-grid"><div class="left-col"><div class="narrative"><p id="chapterIntro"></p></div><div class="scene" id="scenePanel"></div><div class="task" id="taskPanel"></div></div><div class="right-col"><div class="map-panel"><div class="map-head">КАРТА РАССЛЕДОВАНИЯ · LIVERPOOL</div><div id="map"></div><div class="map-legend">● МЕСТО · ● СВИДЕТЕЛЬ · ● МАРШРУТ</div></div><div class="right-bottom"><div class="mini-panel"><strong>АРХИВ УЛИК</strong><span id="evidenceCount">0 документов</span></div><div class="mini-panel"><strong>ВЕРСИЯ ГРУППЫ</strong><span id="teamVersion">Формируется</span></div></div></div></div>
-<div class="bottom-nav"><div class="chapter-dots" id="chapterDots"></div><div class="bottom-actions"><button class="ghost" id="notesButton">ЗАМЕТКИ</button><button class="primary" id="continueButton" disabled>СЛЕДУЮЩАЯ ГЛАВА →</button></div></div></section>
-<section id="resultScreen" class="screen result-screen"><div class="result-inner result-inner-noir"><div class="eyebrow">ДЕЛО № 031 · ФИНАЛЬНЫЙ РЕЗУЛЬТАТ</div><h2 id="resultTitle">Последний ход</h2><div class="result-verdict" id="resultVerdict">РАССЛЕДОВАНИЕ ЗАВЕРШЕНО</div><div class="result-photo-wrap"><img id="resultPhoto" src="assets/images/mortimer-triumphant.jpg" alt="Эдвард Мортимер"><div class="result-photo-stamp" id="resultStamp">ЭДВАРД МОРТИМЕР</div></div><p id="resultLead"></p><div class="result-score" id="finalScore">0 / 100</div><p id="resultExplanation"></p><div class="result-actions"><button id="restartGame">ВЕРНУТЬСЯ К НАЧАЛУ</button></div></div></section></main>
-<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><article class="modal"><button class="modal-close" id="modalClose" aria-label="Закрыть">×</button><div id="modalContent"></div></article></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="data/game.js?v=10"></script><script src="js/firebase-config.js?v=6"></script><script src="js/app.js?v=10"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
+<title>ДЕЛО № 031 — Последний ход</title>
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/vendor/leaflet.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body class="tv-body">
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">№</span><div><div class="brand-name">CASE FILES / 031</div><div class="eyebrow">LIVERPOOL · 1931</div></div></div>
+  <div class="top-meta">
+    <span id="roomDisplay">ROOM: —</span>
+    <span><i class="status-dot"></i><b id="connectionLabel">LOCAL MODE</b></span>
+    <span id="clockLabel">02:20:00</span>
+    <span class="tv-keys">ПУЛЬТ ТВ: СТРЕЛКИ · OK · RETURN</span>
+  </div>
+</header>
+<main id="app">
+
+<section id="introScreen" class="screen intro active">
+  <div class="intro-poster">
+    <img class="poster-art" src="assets/images/noir-poster.jpg?v=11" alt="Авторская нуарная сцена: Ливерпуль ночью">
+    <div class="poster-kicker">AN UNSOLVED LIVERPOOL MURDER</div>
+    <div class="poster-title">ПОСЛЕДНИЙ<br><em>ХОД</em></div>
+    <div class="poster-rule"></div>
+    <p>ДЕЛО № 031 · 20 ЯНВАРЯ 1931</p>
+  </div>
+  <div class="intro-copy">
+    <div class="eyebrow">АРХИВНОЕ РАССЛЕДОВАНИЕ</div>
+    <p>20 января 1931 года Джулия Уоллес была найдена убитой в собственном доме в Ливерпуле. Накануне неизвестный оставил странное телефонное сообщение. Её муж был осуждён — и освобождён после отмены приговора.</p>
+    <div class="pair-panel">
+      <div class="pair-qr" id="qrBox"></div>
+      <div class="pair-info">
+        <div class="eyebrow">ПУЛЬТ IPHONE · ПОДКЛЮЧЕНИЕ</div>
+        <p>Отсканируйте QR-код камерой iPhone — пульт следственной группы откроется сразу с кодом этой комнаты. Все материалы и ответ команды выбираются на пульте.</p>
+        <div class="pair-room">КОМНАТА: <b id="pairRoom">—</b></div>
+        <div class="pair-url" id="pairUrl"></div>
+      </div>
+    </div>
+    <div class="intro-meta"><span>РЕАЛЬНОЕ ДЕЛО</span><span>7 ГЛАВ</span><span>2–3 ЧАСА</span><span>КОМАНДНОЕ РАССЛЕДОВАНИЕ</span></div>
+    <button class="primary" id="startGame" data-tv-focus>НАЧАТЬ РАССЛЕДОВАНИЕ →</button>
+    <p class="intro-foot">Все участники — одна следственная группа. Ваша задача — проверить доказательства и вынести обоснованный вердикт. Пульт ТВ: стрелки — выбор, OK — открыть, Return — назад.</p>
+  </div>
+</section>
+
+<section id="gameScreen" class="screen game-screen">
+  <div class="chapter-head">
+    <div><div class="eyebrow" id="chapterKicker">ГЛАВА 01</div><h1 id="chapterTitle">Ночь в Wolverton Street</h1></div>
+    <div class="head-right">
+      <div class="progress-wrap"><div class="progress-label"><span>ХОД РАССЛЕДОВАНИЯ</span><span id="progressText">1 / 7</span></div><div class="progress"><span id="progressBar"></span></div></div>
+      <div class="time-chip" id="chapterTime">15 MIN</div>
+    </div>
+  </div>
+  <div class="game-grid">
+    <div class="left-col">
+      <div class="narrative"><p id="chapterIntro"></p></div>
+      <div class="scene" id="scenePanel"></div>
+      <div class="task" id="taskPanel"></div>
+    </div>
+    <div class="right-col">
+      <div class="map-panel"><div class="map-head">КАРТА РАССЛЕДОВАНИЯ · LIVERPOOL</div><div id="map"></div><div class="map-legend">● МЕСТО · ● СВИДЕТЕЛЬ · ● МАРШРУТ</div></div>
+      <div class="right-bottom">
+        <div class="mini-panel"><strong>АРХИВ УЛИК</strong><span id="evidenceCount">0 документов</span></div>
+        <div class="mini-panel"><strong>ВЕРСИЯ ГРУППЫ</strong><span id="teamVersion">Формируется</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="chapter-dots" id="chapterDots"></div>
+    <div class="bottom-actions">
+      <button class="ghost" id="notesButton" data-tv-focus>ЗАМЕТКИ</button>
+      <button class="ghost" id="sourcesButton" data-tv-focus>ИСТОЧНИКИ</button>
+      <button class="primary" id="continueButton" data-tv-focus disabled>СЛЕДУЮЩАЯ ГЛАВА →</button>
+    </div>
+  </div>
+</section>
+
+<section id="resultScreen" class="screen result-screen">
+  <div class="result-inner result-inner-noir">
+    <div class="eyebrow">ДЕЛО № 031 · ФИНАЛЬНЫЙ РЕЗУЛЬТАТ</div>
+    <h2 id="resultTitle">Последний ход</h2>
+    <div class="result-verdict" id="resultVerdict">РАССЛЕДОВАНИЕ ЗАВЕРШЕНО</div>
+    <div class="result-photo-wrap"><img id="resultPhoto" src="assets/images/mortimer-triumphant.jpg" alt="Эдвард Мортимер"><div class="result-photo-stamp" id="resultStamp">ЭДВАРД МОРТИМЕР</div></div>
+    <p id="resultLead"></p>
+    <div class="result-score" id="finalScore">0 / 100</div>
+    <p id="resultExplanation"></p>
+    <div class="result-actions"><button id="restartGame" data-tv-focus>ВЕРНУТЬСЯ К НАЧАЛУ</button></div>
+  </div>
+</section>
+
+</main>
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <article class="modal"><button class="modal-close" id="modalClose" data-tv-focus aria-label="Закрыть">×</button><div id="modalContent"></div></article>
+</div>
+<script src="js/vendor/leaflet.js?v=11"></script>
+<script src="js/vendor/qrcode.min.js?v=11"></script>
+<script src="js/vendor/mqtt.min.js?v=11"></script>
+<script src="data/game.js?v=11"></script>
+<script src="js/firebase-config.js?v=6"></script>
+<script src="js/app.js?v=11"></script>
+</body>
+</html>

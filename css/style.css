@@ -42,3 +42,39 @@
 .leaflet-interactive.map-focus-marker{stroke:#ff3434 !important;stroke-width:4px !important;fill:#ff2525 !important;fill-opacity:1 !important;filter:drop-shadow(0 0 7px #ff2525)}
 .leaflet-interactive.map-muted-marker{stroke:#777 !important;fill:#777 !important;fill-opacity:.22 !important}
 @media(max-width:760px){.evidence-list{grid-template-columns:1fr}.dossier-layout{grid-template-columns:1fr;gap:18px}.dossier-figure{min-height:190px}.dossier-figure .hero-img{height:210px}.dossier-topline{font-size:9px}}
+
+/* ================= CASE 031 v11: Samsung TV, QR-подключение, фокус пульта ================= */
+/* Фокус элементов при навигации пультом ТВ: стрелки/OK/Return */
+.tv-focus{outline:3px solid #d8b477!important;outline-offset:2px;box-shadow:0 0 16px rgba(216,180,119,.45);filter:brightness(1.15)}
+button.tv-focus{border-color:#d8b477}
+.evidence-card.tv-focus{border-color:#d8b477;opacity:1}
+.evidence-card.tv-focus img{filter:grayscale(1) contrast(1.25)}
+
+/* Легенда клавиш пульта в шапке — только на больших экранах */
+.tv-keys{display:none;letter-spacing:.14em}
+@media(min-width:1100px){.tv-keys{display:inline;color:#84837f}}
+
+/* QR-панель подключения пульта на заставке */
+.pair-panel{display:flex;gap:18px;align-items:center;border:1px solid #62574b;background:linear-gradient(135deg,#16181a,#0b0c0e);padding:14px 16px;margin:20px 0 8px}
+.pair-qr{flex:none;background:#f3efe6;padding:8px;border:1px solid #8e806a;width:132px;height:132px;box-sizing:content-box}
+.pair-qr img,.pair-qr canvas{display:block}
+.pair-info{min-width:0}
+.pair-info .eyebrow{margin-bottom:6px}
+.pair-info p{font:14px/1.4 'Cormorant Garamond',Georgia,serif;color:#c9c3b8;margin:0 0 8px}
+.pair-room{font:600 14px 'Oswald',Arial,sans-serif;letter-spacing:.14em;color:#d9c49a}
+.pair-room b{color:#f0dfae}
+.pair-url{font:11px Arial,sans-serif;color:#8f8f8f;word-break:break-all;margin-top:4px}
+.qr-fallback{font:11px/1.5 Arial,sans-serif;color:#3a3833;padding:34px 4px;text-align:center}
+@media(max-width:600px){.pair-panel{flex-direction:row}.pair-qr{width:110px;height:110px}.pair-qr canvas,.pair-qr img{max-width:110px}}
+
+/* Тосты подтверждений */
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);z-index:2000;background:#0d0e10;color:#e9e5dc;border:1px solid #b99b70;padding:12px 22px;font:600 12px 'Oswald',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 12px 40px #000;opacity:.96}
+
+/* Модальное окно источников */
+.source-item{margin:0 0 16px}
+.source-item a{color:#762b2b;font:600 14px Arial,sans-serif}
+.source-item p{font:15px/1.45 'Cormorant Garamond',Georgia,serif;color:#3c3a37;margin:4px 0 0}
+.source-note{border-top:1px solid #8f887b;padding-top:12px;margin-top:18px;font-style:italic;color:#5d5b57!important}
+
+/* Итоговое окно и ввод пульта — гарантируем видимость кнопок */
+.result-actions button{min-height:52px}
