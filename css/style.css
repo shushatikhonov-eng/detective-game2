@@ -60,23 +60,25 @@
 .map-focus-legend{display:flex;gap:22px;flex-wrap:wrap;margin:0 0 12px;font:11px 'Oswald';letter-spacing:.08em;text-transform:uppercase;color:#555}.map-focus-legend span{display:flex;align-items:center;gap:8px}.map-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#888;opacity:.55}.map-dot.active{width:13px;height:13px;background:#a52e2e;opacity:1;box-shadow:0 0 0 4px #a52e2e22}.map-active-label{font:600 11px Arial;color:#7d2020;background:#eee9df;border:1px solid #7d2020;border-radius:2px;padding:3px 5px;box-shadow:0 1px 5px #0005}
 
 
-/* WALLACE 031 — explicit TV intro and evidence typography overrides */
-#introScreen .intro-poster{min-width:0;}
-#introScreen .poster-title{font-size:clamp(54px,7.1vw,112px)!important;line-height:.86!important;letter-spacing:-.025em!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;max-width:100%;margin:7vh 0 4vh!important;}
-#introScreen .poster-title br{display:block;}
-#introScreen .intro-copy{display:block!important;visibility:visible!important;opacity:1!important;max-width:640px;}
-#introScreen .intro-copy>p:not(.intro-foot){font:clamp(23px,2vw,30px)/1.55 'Cormorant Garamond',Georgia,serif!important;color:#eee9df!important;max-width:640px;margin:18px 0 22px!important;}
-#introScreen .intro-foot{display:block!important;font:17px/1.55 'Cormorant Garamond',Georgia,serif!important;color:#c2bdb4!important;margin-top:20px!important;}
-#introScreen .intro-meta{margin:24px 0!important;}
-#introScreen .primary{font-size:14px!important;padding:15px 22px!important;}
-.modal .hero-img{display:block!important;float:right!important;width:33.333%!important;max-width:33.333%!important;height:auto!important;max-height:48vh!important;object-fit:cover!important;margin:0 0 22px 30px!important;}
-.modal p{font:22px/1.62 'Cormorant Garamond',Georgia,serif!important;color:#222!important;}
-.modal .reveal{clear:both!important;}
+
+
+/* TV ONLY — intro composition and evidence cards. Remote markup is not modified. */
+body.tv-body #introScreen .intro-poster{min-width:0;}
+body.tv-body #introScreen .poster-title{display:block;width:100%;max-width:100%;font-size:clamp(48px,6.2vw,94px)!important;line-height:.88!important;letter-spacing:-.035em!important;white-space:normal!important;overflow:visible!important;overflow-wrap:normal!important;word-break:normal!important;margin:6vh 0 4vh!important;}
+body.tv-body #introScreen .poster-title br{display:block;}
+body.tv-body #introScreen .intro-copy{display:block!important;visibility:visible!important;opacity:1!important;max-width:660px;}
+body.tv-body #introScreen .intro-copy>p:not(.intro-foot){font:clamp(22px,1.9vw,29px)/1.52 'Cormorant Garamond',Georgia,serif!important;color:#eee9df!important;max-width:660px;margin:18px 0 22px!important;}
+body.tv-body #introScreen .intro-foot{display:block!important;font:17px/1.55 'Cormorant Garamond',Georgia,serif!important;color:#c2bdb4!important;margin-top:20px!important;}
+body.tv-body #introScreen .intro-meta{margin:22px 0!important;}
+body.tv-body #introScreen .primary{font-size:14px!important;padding:15px 22px!important;}
+body.tv-body .modal .hero-img{display:block!important;float:right!important;width:33.333%!important;max-width:33.333%!important;height:auto!important;max-height:48vh!important;object-fit:cover!important;margin:0 0 22px 30px!important;}
+body.tv-body .modal p{font:22px/1.62 'Cormorant Garamond',Georgia,serif!important;color:#222!important;}
+body.tv-body .modal .reveal{clear:both!important;}
 @media(max-width:700px){
- #introScreen.intro{grid-template-columns:1fr!important;padding:22px!important;gap:22px!important;}
- #introScreen .intro-poster{min-height:48vh!important;}
- #introScreen .poster-title{font-size:clamp(54px,13vw,90px)!important;margin:5vh 0 3vh!important;}
- #introScreen .intro-copy>p:not(.intro-foot){font-size:22px!important;}
- .modal .hero-img{float:none!important;width:100%!important;max-width:100%!important;max-height:42vh!important;margin:0 auto 20px!important;object-fit:contain!important;}
- .modal p{font-size:20px!important;}
+ body.tv-body #introScreen.intro{grid-template-columns:1fr!important;padding:22px!important;gap:22px!important;}
+ body.tv-body #introScreen .intro-poster{min-height:48vh!important;}
+ body.tv-body #introScreen .poster-title{font-size:clamp(48px,12vw,82px)!important;margin:5vh 0 3vh!important;}
+ body.tv-body #introScreen .intro-copy>p:not(.intro-foot){font-size:22px!important;}
+ body.tv-body .modal .hero-img{float:none!important;width:100%!important;max-width:100%!important;max-height:42vh!important;margin:0 auto 20px!important;object-fit:contain!important;}
+ body.tv-body .modal p{font-size:20px!important;}
 }
