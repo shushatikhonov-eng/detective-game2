@@ -1,7 +1,8 @@
 (()=>{
- const $=id=>document.getElementById(id),roomInput=$('roomCode');
+ const $=id=>document.getElementById(id),roomInput=$('roomCode'),shell=$('remoteShell');
  let room=new URLSearchParams(location.search).get('room')||roomInput.value,db=null,lastState=null,selectedAnswer=null;
  const bc=('BroadcastChannel'in window)?new BroadcastChannel('wallace-game-'+room):null;
+ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function status(s){$('connectionStatus').textContent=s;}
  function send(command){
   if(bc)bc.postMessage({kind:'command',command});
@@ -10,29 +11,39 @@
  }
  function render(s){
   if(!s)return;
-  const previousChapter=lastState?.chapter;
-  if(previousChapter!==undefined&&previousChapter!==s.chapter)selectedAnswer=null;
+  const prev=lastState?.chapter;
+  if(prev!==undefined&&prev!==s.chapter)selectedAnswer=null;
   if(s.answers?.[s.chapter])selectedAnswer=null;
   lastState=s;
-  const started=!!s.started,finished=!!s.finished,chapter=GAME.chapters[s.chapter],prior=s.answers?.[s.chapter],task=chapter?.task;
-  $('remoteShell').classList.toggle('game-active',started||finished);
-  $('remoteChapter').textContent=finished?'Расследование завершено':started?(chapter?.title||'Глава'):'Ожидание начала расследования';
-  $('remoteProgress').textContent=`${started?Math.min(s.chapter+1,GAME.chapters.length):0} / ${GAME.chapters.length} глав · ${s.score||0} баллов`;
+  const chapters=GAME.chapters||[],chapter=chapters[s.chapter],started=!!s.started,finished=!!s.finished,prior=s.answers?.[s.chapter],task=chapter?.task;
+  shell.classList.toggle('is-playing',started||finished);
+  shell.classList.toggle('is-finished',finished);
+  $('remoteChapter').textContent=finished?'Расследование завершено':started?(chapter?.title||'Текущая глава'):'Ожидание телевизора';
+  $('chapterKicker').textContent=chapter?.kicker||'ТЕКУЩАЯ ГЛАВА';
+  $('remoteScore').innerHTML=`${Number(s.score)||0}<br><small>БАЛЛОВ</small>`;
+  const count=chapters.length||7,progress=started?Math.min(s.chapter+1,count):0;
+  $('remoteProgress').textContent=`ГЛАВА ${progress} ИЗ ${count} · ${Number(s.score)||0} БАЛЛОВ`;
+  $('remoteProgressBar').style.width=`${progress/count*100}%`;
+  $('remoteGameStatus').textContent=finished?'Расследование завершено. Итоговая версия команды зафиксирована.':started?`Глава ${s.chapter+1} · изучите материалы, обсудите факты и зафиксируйте общий вывод.`:'Телевизор подключён. Нажмите «Начать игру», чтобы начать расследование.';
+  $('remoteIntroText').textContent=started&&chapter?chapter.intro:'';
   $('startButton').classList.toggle('hidden',started||finished);
-  $('remoteGameStatus').textContent=finished?'Дело завершено. Итог расследования показан на телевизоре.':started?`Идёт глава ${s.chapter+1} из ${GAME.chapters.length}. Управляйте материалами и отвечайте на вопросы с этого пульта.`:'Телевизор подключён. Нажмите «Начать игру», чтобы запустить расследование.';
-  $('remoteNotes').value=s.notes||'';
-  $('remoteEvidence').innerHTML=started&&chapter?chapter.evidence.map(e=>`<button class="remote-evidence" data-evidence="${e.id}"><small>${e.type}</small><strong>${e.title}</strong></button>`).join(''):'<p class="remote-status">Материалы появятся после начала расследования.</p>';
+  $('connectionCard').classList.toggle('compact-connection',started||finished);
+  if(started&&chapter){
+   $('remoteEvidence').innerHTML=chapter.evidence.map((e,i)=>`<button class="remote-evidence" data-evidence="${esc(e.id)}"><span class="remote-evidence-number">${String(i+1).padStart(2,'0')}</span><span class="remote-evidence-copy"><small>${esc(e.type)}</small><strong>${esc(e.title)}</strong></span><span class="remote-evidence-arrow">↗</span></button>`).join('');
+  }else $('remoteEvidence').innerHTML='<p class="remote-status">Материалы появятся после начала расследования.</p>';
   $('remoteEvidence').querySelectorAll('[data-evidence]').forEach(b=>b.onclick=()=>send({type:'open_evidence',id:b.dataset.evidence}));
-  if(!started||!task){$('remoteQuestion').innerHTML='<p class="remote-status">Вопросы появятся после начала расследования.</p>';}
-  else if(prior){$('remoteQuestion').innerHTML=`<p class="remote-status">${task.prompt}</p><div class="remote-answer-list">${task.options.map((o,i)=>`<div class="remote-answer ${prior.choice===i?'selected':''} ${i===task.correct?'correct-answer':''}"><b>${String.fromCharCode(65+i)}.</b> ${o}</div>`).join('')}</div><p class="remote-status">${prior.correct?'Ответ верный.':'Ответ зафиксирован.'} ${prior.explain||task.explain||''}</p>`;}
-  else {$('remoteQuestion').innerHTML=`<p class="remote-status">${task.prompt}</p>${task.options.map((o,i)=>`<button class="remote-answer ${selectedAnswer===i?'selected':''}" data-choice="${i}"><b>${String.fromCharCode(65+i)}.</b> ${o}</button>`).join('')}`;}
+  if(finished){$('remoteQuestion').innerHTML='<h3>Расследование завершено</h3><p class="remote-status">Итоговое решение и историческое заключение доступны на телевизоре.</p>';}
+  else if(!started||!task){$('remoteQuestion').innerHTML='<p class="remote-status">Вопрос появится после начала расследования.</p>';}
+  else if(prior){$('remoteQuestion').innerHTML=`<p class="remote-question-prompt">${esc(task.prompt)}</p><div class="remote-answer-list">${task.options.map((o,i)=>`<div class="remote-answer ${prior.choice===i?'selected':''} ${prior.correct&&i===task.correct?'correct-answer':''}"><b>${String.fromCharCode(65+i)}</b><span>${esc(o)}</span></div>`).join('')}</div><div class="remote-explanation"><strong>${prior.correct?'ВЕРНЫЙ ВЫВОД':'ОТВЕТ ЗАФИКСИРОВАН'}</strong><p>${esc(prior.explain||task.explain||chapter.debrief||'')}</p></div>`;}
+  else {$('remoteQuestion').innerHTML=`<p class="remote-question-prompt">${esc(task.prompt)}</p><div class="remote-answer-list">${task.options.map((o,i)=>`<button class="remote-answer ${selectedAnswer===i?'selected':''}" data-choice="${i}"><b>${String.fromCharCode(65+i)}</b><span>${esc(o)}</span></button>`).join('')}</div>`;}
   $('remoteQuestion').querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{selectedAnswer=Number(b.dataset.choice);$('remoteQuestion').querySelectorAll('[data-choice]').forEach(x=>x.classList.toggle('selected',x===b));$('confirmAnswer').disabled=false;});
   $('confirmAnswer').disabled=!started||finished||!!prior||selectedAnswer===null;
   $('confirmAnswer').classList.toggle('hidden',!started||finished||!!prior);
   $('nextButton').disabled=!started||finished||!prior;
   $('nextButton').classList.toggle('hidden',!started||finished);
-  $('nextButton').textContent=s.chapter===GAME.chapters.length-1?'ЗАВЕРШИТЬ РАССЛЕДОВАНИЕ →':'СЛЕДУЮЩАЯ ГЛАВА →';
-  $('remoteAnswerStatus').textContent=prior?'Ответ принят телевизором. Можно переходить дальше.':started?'Выберите версию и подтвердите ответ.':'Ожидание начала игры.';
+  $('nextButton').textContent=s.chapter===count-1?'ЗАВЕРШИТЬ РАССЛЕДОВАНИЕ →':'СЛЕДУЮЩАЯ ГЛАВА →';
+  $('remoteAnswerStatus').textContent=prior?'Решение принято и синхронизировано с телевизором.':started?'Выберите один вариант. После подтверждения ответ появится на общем экране.':'Ожидание начала игры.';
+  if(document.activeElement!==$('remoteNotes'))$('remoteNotes').value=s.notes||'';
  }
  async function connect(){
   room=roomInput.value.trim().toUpperCase()||'WALLACE31';status('Подключение...');
@@ -49,13 +60,10 @@
  }
  $('connectButton').onclick=connect;
  $('startButton').onclick=()=>send({type:'start'});
- $('showMap').onclick=()=>send({type:'show_map'});
- $('showBoard').onclick=()=>send({type:'show_board'});
- $('closeView').onclick=()=>send({type:'close_view'});
+ $('showMap').onclick=()=>send({type:'show_map'});$('showBoard').onclick=()=>send({type:'show_board'});$('closeView').onclick=()=>send({type:'close_view'});
  $('confirmAnswer').onclick=()=>{if(selectedAnswer!==null){send({type:'answer',choice:selectedAnswer});selectedAnswer=null;$('confirmAnswer').disabled=true;}};
  $('nextButton').onclick=()=>send({type:'continue'});
- $('saveNotes').onclick=()=>send({type:'notes',notes:$('remoteNotes').value});
- $('showSources').onclick=()=>send({type:'open_sources'});
+ $('saveNotes').onclick=()=>send({type:'notes',notes:$('remoteNotes').value});$('showSources').onclick=()=>send({type:'open_sources'});
  if(bc)bc.onmessage=e=>{if(e.data?.kind==='state')render(e.data.state);};
  connect();
 })();
