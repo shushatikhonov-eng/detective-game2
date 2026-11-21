@@ -1,9 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
-<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#242629"/><stop offset="1" stop-color="#08090b"/></linearGradient></defs>
-<rect width="720" height="560" fill="url(#bg)"/>
-<g opacity=".13" stroke="#eee" stroke-width="1"><path d="M0 20H720"/><path d="M0 38H720"/><path d="M0 56H720"/><path d="M0 74H720"/><path d="M0 92H720"/><path d="M0 110H720"/><path d="M0 128H720"/><path d="M0 146H720"/><path d="M0 164H720"/><path d="M0 182H720"/><path d="M0 200H720"/><path d="M0 218H720"/><path d="M0 236H720"/><path d="M0 254H720"/><path d="M0 272H720"/><path d="M0 290H720"/><path d="M0 308H720"/><path d="M0 326H720"/><path d="M0 344H720"/><path d="M0 362H720"/><path d="M0 380H720"/><path d="M0 398H720"/><path d="M0 416H720"/><path d="M0 434H720"/><path d="M0 452H720"/><path d="M0 470H720"/><path d="M0 488H720"/><path d="M0 506H720"/><path d="M0 524H720"/><path d="M0 542H720"/></g>
-<rect x="180" y="70" width="360" height="420" fill="#d8cfbd"/><circle cx="360" cy="210" r="72" fill="#333"/><path d="M245 430C250 300 470 300 475 430Z" fill="#333"/><rect x="205" y="445" width="310" height="25" fill="#9f302f"/>
-<path d="M34 34H686V526H34Z" fill="none" stroke="#85765f" stroke-width="2"/>
-<text x="38" y="45" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" fill="#c4ad85">CASE FILE / 031 · E11</text>
-<text x="38" y="510" font-family="Georgia,serif" font-size="24" fill="#eee7da">Карточка Эдварда Мортимера</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+<defs>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#4a4b4b"/><stop offset=".42" stop-color="#17191b"/><stop offset="1" stop-color="#050607"/></linearGradient>
+ <radialGradient id="light"><stop stop-color="#d9d5ca" stop-opacity=".55"/><stop offset="1" stop-color="#d9d5ca" stop-opacity="0"/></radialGradient>
+ <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#e4dfd3"/><stop offset="1" stop-color="#aaa69e"/></linearGradient>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="143" /><feColorMatrix values="0 0 0 0 .7 0 0 0 0 .7 0 0 0 0 .7 0 0 0 .13 0"/></filter>
+ <filter id="shadow"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<rect width="900" height="620" fill="url(#bg)"/><ellipse cx="460" cy="240" rx="430" ry="300" fill="url(#light)"/>
+<path d="M0 500L900 430V620H0Z" fill="#08090a"/><path d="M0 530L900 470" stroke="#a9a69e" opacity=".2" stroke-width="3"/>
+<g opacity=".18" stroke="#ddd" stroke-width="2"><path d="M0 70H900M0 110H900M0 150H900M0 190H900M0 230H900M0 270H900M0 310H900M0 350H900M0 390H900M0 430H900"/></g>
+<path d="M240 540Q240 360 350 330L450 310 550 330Q660 360 660 540Z" fill="#08090a" stroke="#aaa69e" stroke-width="4"/><ellipse cx="450" cy="205" rx="110" ry="145" fill="#17191a" stroke="#c9c4b9" stroke-width="5"/><path d="M340 180Q350 40 480 60Q580 70 570 190Q510 140 450 150Q390 165 340 180" fill="#050607"/><path d="M380 230H420M480 230H520" stroke="#ddd" stroke-width="8"/><path d="M410 285Q450 315 495 280" fill="none" stroke="#bbb" stroke-width="6"/><rect width="900" height="620" filter="url(#grain)" opacity=".38"/><rect x="18" y="18" width="864" height="584" fill="none" stroke="#b8ad99" stroke-opacity=".5" stroke-width="2"/><path d="M0 0L280 0 0 280Z" fill="#fff" opacity=".035"/><path d="M900 620L640 620 900 360Z" fill="#fff" opacity=".025"/></svg>

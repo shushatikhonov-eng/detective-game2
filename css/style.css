@@ -20,39 +20,25 @@
 .screen:not(.active){display:none!important}
 
 
-/* CASE 031 v9 — archival evidence cards and controlled end screen */
-.screen:not(.active){display:none!important}
-#resultPhoto[hidden]{display:none!important}
-.evidence-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
-.evidence-card{display:flex;flex-direction:column;align-items:stretch;text-align:left;min-width:0;padding:0;background:#0b0c0e;border:1px solid #5b5145;overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s}
-.evidence-card:hover{border-color:#d1ad76;transform:translateY(-2px)}
-.evidence-card img{display:block;width:100%;height:clamp(125px,13vw,190px);object-fit:cover;object-position:center;filter:grayscale(1) contrast(1.18) brightness(.88)}
-.evidence-card .ev-type{font:9px 'Oswald',sans-serif;letter-spacing:.14em;color:#c4a77b;padding:10px 12px 4px;text-transform:uppercase}
-.evidence-card .ev-title{font:600 17px/1.12 'Cormorant Garamond',serif;padding:0 12px 13px;color:#eee7da}
-.archive-card{color:#171717}
-.archive-card-head{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #8f887b;padding:0 0 12px;margin:0 0 20px}
-.archive-card-type{font:11px 'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7e2d2a;text-align:right}
-.archive-card-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:34px;align-items:center;min-height:300px}
-.archive-card-copy h2{font:700 clamp(34px,4.2vw,58px)/.98 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:0 0 18px;color:#171717}
-.archive-card-copy p{font:19px/1.52 'Cormorant Garamond',serif;margin:0;color:#262626}
-.archive-card-image{background:#171717;padding:10px;border:1px solid #8b8171}
-.archive-card-image .hero-img{display:block;width:100%;height:clamp(230px,30vw,390px);object-fit:cover;filter:grayscale(1) contrast(1.12)}
-.archive-card-foot{border-top:1px solid #8f887b;margin-top:22px;padding-top:12px;font:10px 'Oswald',sans-serif;letter-spacing:.17em;color:#7e2d2a}
-#map{pointer-events:none;cursor:default}
-#map .leaflet-control-container{display:none}
-.map-focus-marker{filter:drop-shadow(0 0 7px #ff342d) drop-shadow(0 0 13px #ff342d)}
-.result-screen{min-height:calc(100vh - 64px);display:none!important;place-items:center;padding:40px 24px}
-.result-screen.active{display:grid!important}
-.result-inner-noir{width:min(900px,100%);margin:auto;padding:36px 44px;border:1px solid #655844;background:radial-gradient(ellipse at 50% 35%,#1a1b1c 0%,#090a0b 72%);text-align:center}
-.result-photo-wrap{width:min(560px,100%);margin:22px auto;position:relative;border:1px solid #8b795e}
-.result-photo-wrap img{display:block;width:100%;max-height:390px;object-fit:cover;filter:grayscale(1) contrast(1.12)}
-.result-verdict{display:inline-block;margin:4px auto 0;padding:12px 28px;background:#8f2d2b;color:#f4eee3;font:700 20px 'Oswald',sans-serif;letter-spacing:.16em}
-.result-verdict.defeat{background:#5b5b5b}
-@media(max-width:700px){
- .archive-card-grid{grid-template-columns:1fr;gap:18px}
- .archive-card-image .hero-img{height:230px}
- .modal{padding:30px 22px}
- .evidence-list{grid-template-columns:1fr 1fr;gap:8px}
- .evidence-card img{height:115px}
- .result-inner-noir{padding:26px 16px}
-}
+/* CASE 031 v10: archive dossier cards and non-interactive highlighted map */
+.screen.result-screen{display:none !important}
+.screen.result-screen.active{display:grid !important}
+.evidence-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.evidence-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(110px,.85fr);grid-template-rows:auto auto;min-height:118px;position:relative;background:linear-gradient(115deg,#151719,#08090a);border:1px solid #55504a}
+.evidence-card img{grid-column:2;grid-row:1 / span 2;width:100%;height:100%;min-height:118px;object-fit:cover;filter:grayscale(1) contrast(1.18);opacity:.92}
+.evidence-card .ev-type{grid-column:1;grid-row:1;padding:13px 12px 3px;font-size:9px}
+.evidence-card .ev-title{grid-column:1;grid-row:2;padding:4px 12px 13px;font:600 17px/1.12 'Cormorant Garamond';align-self:start}
+.evidence-card:hover{border-color:#b99b70}
+.evidence-card:after{content:"";position:absolute;right:0;top:0;width:1px;height:100%;background:#a58d6a55}
+.dossier-topline{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #8f887b;padding:0 0 12px;margin:0 0 20px;font:11px 'Oswald';letter-spacing:.18em;text-transform:uppercase;color:#7c2b2a}
+.dossier-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.85fr);gap:34px;align-items:center;min-height:300px}
+.dossier-copy h2{margin:8px 0 18px;font:700 clamp(36px,4.2vw,60px)/.96 'Barlow Condensed';text-transform:uppercase;letter-spacing:.005em}
+.dossier-copy p{font:18px/1.52 'Cormorant Garamond';margin:0;color:#252321}
+.dossier-figure{margin:0;background:#101113;border:1px solid #776f62;min-height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.dossier-figure .hero-img{float:none;display:block;width:100%;max-width:100%;height:260px;max-height:42vh;object-fit:cover;margin:0;border:0;filter:grayscale(1) contrast(1.18)}
+.dossier-foot{border-top:1px solid #8f887b;margin-top:24px;padding-top:12px;color:#7c2b2a;font:10px 'Oswald';letter-spacing:.18em}
+#map{pointer-events:none;filter:grayscale(1) contrast(1.05) brightness(.78)}
+.leaflet-container{cursor:default !important}
+.leaflet-interactive.map-focus-marker{stroke:#ff3434 !important;stroke-width:4px !important;fill:#ff2525 !important;fill-opacity:1 !important;filter:drop-shadow(0 0 7px #ff2525)}
+.leaflet-interactive.map-muted-marker{stroke:#777 !important;fill:#777 !important;fill-opacity:.22 !important}
+@media(max-width:760px){.evidence-list{grid-template-columns:1fr}.dossier-layout{grid-template-columns:1fr;gap:18px}.dossier-figure{min-height:190px}.dossier-figure .hero-img{height:210px}.dossier-topline{font-size:9px}}

@@ -1,9 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560">
-<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#242629"/><stop offset="1" stop-color="#08090b"/></linearGradient></defs>
-<rect width="720" height="560" fill="url(#bg)"/>
-<g opacity=".13" stroke="#eee" stroke-width="1"><path d="M0 20H720"/><path d="M0 38H720"/><path d="M0 56H720"/><path d="M0 74H720"/><path d="M0 92H720"/><path d="M0 110H720"/><path d="M0 128H720"/><path d="M0 146H720"/><path d="M0 164H720"/><path d="M0 182H720"/><path d="M0 200H720"/><path d="M0 218H720"/><path d="M0 236H720"/><path d="M0 254H720"/><path d="M0 272H720"/><path d="M0 290H720"/><path d="M0 308H720"/><path d="M0 326H720"/><path d="M0 344H720"/><path d="M0 362H720"/><path d="M0 380H720"/><path d="M0 398H720"/><path d="M0 416H720"/><path d="M0 434H720"/><path d="M0 452H720"/><path d="M0 470H720"/><path d="M0 488H720"/><path d="M0 506H720"/><path d="M0 524H720"/><path d="M0 542H720"/></g>
-<path d="M130 430L360 100L590 430Z" fill="#252729" stroke="#d9cfbb" stroke-width="7"/><path d="M250 430V280H470V430" fill="#08090b" stroke="#bda77f" stroke-width="6"/><circle cx="360" cy="220" r="28" fill="#9f302f"/>
-<path d="M34 34H686V526H34Z" fill="none" stroke="#85765f" stroke-width="2"/>
-<text x="38" y="45" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" fill="#c4ad85">CASE FILE / 031 · E17</text>
-<text x="38" y="510" font-family="Georgia,serif" font-size="24" fill="#eee7da">Незнакомец у Wolverton Street</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+<defs>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#4a4b4b"/><stop offset=".42" stop-color="#17191b"/><stop offset="1" stop-color="#050607"/></linearGradient>
+ <radialGradient id="light"><stop stop-color="#d9d5ca" stop-opacity=".55"/><stop offset="1" stop-color="#d9d5ca" stop-opacity="0"/></radialGradient>
+ <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#e4dfd3"/><stop offset="1" stop-color="#aaa69e"/></linearGradient>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="221" /><feColorMatrix values="0 0 0 0 .7 0 0 0 0 .7 0 0 0 0 .7 0 0 0 .13 0"/></filter>
+ <filter id="shadow"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<rect width="900" height="620" fill="url(#bg)"/><ellipse cx="460" cy="240" rx="430" ry="300" fill="url(#light)"/>
+<path d="M0 500L900 430V620H0Z" fill="#08090a"/><path d="M0 530L900 470" stroke="#a9a69e" opacity=".2" stroke-width="3"/>
+<g opacity=".18" stroke="#ddd" stroke-width="2"><path d="M0 70H900M0 110H900M0 150H900M0 190H900M0 230H900M0 270H900M0 310H900M0 350H900M0 390H900M0 430H900"/></g>
+<path d="M0 430L900 380V620H0Z" fill="#090a0b"/><g fill="#050607"><path d="M350 540V300Q350 210 450 190Q550 210 550 300V540Z"/><circle cx="450" cy="140" r="72"/></g><path d="M280 560L450 480 620 560" fill="none" stroke="#c5c0b5" stroke-width="5" opacity=".4"/><circle cx="450" cy="180" r="160" fill="url(#light)"/><rect width="900" height="620" filter="url(#grain)" opacity=".38"/><rect x="18" y="18" width="864" height="584" fill="none" stroke="#b8ad99" stroke-opacity=".5" stroke-width="2"/><path d="M0 0L280 0 0 280Z" fill="#fff" opacity=".035"/><path d="M900 620L640 620 900 360Z" fill="#fff" opacity=".025"/></svg>
