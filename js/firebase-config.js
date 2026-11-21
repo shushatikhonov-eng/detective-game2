@@ -1,7 +1,8 @@
-/* Firebase Web App — восстановлена рабочая конфигурация проекта WALLACE31. */
+/* Firebase Web App — рабочая конфигурация WALLACE31. */
 window.FIREBASE_CONFIG = window.firebaseConfig = {
   apiKey: "AIzaSyCyXp3kvFT4IQnJT7Oavrxq5jGQv3Xd0Q0",
   authDomain: "wallace-detective-web.firebaseapp.com",
+  databaseURL: "https://wallace-detective-web-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "wallace-detective-web",
   storageBucket: "wallace-detective-web.firebasestorage.app",
   messagingSenderId: "1084752047867",
