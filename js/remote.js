@@ -51,8 +51,8 @@
     var cfg = window.FIREBASE_CONFIG;
     if (!cfg || !cfg.databaseURL) return onFail();
     status('Подключение к Firebase…');
-    var base = 'https://www.gstatic.com/firebasejs/10.12.2/';
-    loadSeq([base + 'firebase-app-compat.js', base + 'firebase-auth-compat.js', base + 'firebase-database-compat.js'], 0, function (err) {
+    var base = 'https://www.gstatic.com/firebasejs/8.10.1/';
+    loadSeq([base + 'firebase-app.js', base + 'firebase-auth.js', base + 'firebase-database.js'], 0, function (err) {
       if (err || !window.firebase) return onFail();
       try {
         var app = firebase.initializeApp(cfg, 'case031-remote-' + room);

@@ -25,5 +25,7 @@ https://www.williamherbertwallace.com/gallery/crime-scene-photos/. Игра ве
 - Leaflet 1.9.4 (js/vendor/leaflet.js) — лицензия BSD-2-Clause.
 - QRCode.js (js/vendor/qrcode.min.js) — проект davidshimjs/qrcodejs, лицензия MIT.
 - MQTT.js (js/vendor/mqtt.min.js) — лицензия MIT.
-- Шрифты: Google Fonts (Barlow Condensed, Cormorant Garamond, Oswald);
-  предусмотрены системные запасные шрифты.
+- Шрифты (v12): локальные файлы в fonts/ — Oswald и Cormorant Garamond
+  (SIL Open Font License, © Google Fonts). Barlow Condensed удалён: у него нет
+  поддержки кириллицы, из-за чего заголовки смешивались с системным шрифтом.
+  Загрузка идёт с самого сайта — на ТВ работает даже без доступа к Google Fonts.

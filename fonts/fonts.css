@@ -1,0 +1,70 @@
+/* CASE 031: локальные шрифты (кириллица + латиница в одном файле).
+   Заменяют Google Fonts — игра выглядит одинаково на ТВ, компьютере и без интернета.
+   v13: для каждого начертания указан woff-фолбэк — старые браузеры Tizen
+   не умеют woff2 и возьмут woff, новые останутся на woff2. */
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('oswald-v57-cyrillic_latin-regular.woff2') format('woff2'),
+       url('oswald-v57-cyrillic_latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('oswald-v57-cyrillic_latin-500.woff2') format('woff2'),
+       url('oswald-v57-cyrillic_latin-500.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('oswald-v57-cyrillic_latin-600.woff2') format('woff2'),
+       url('oswald-v57-cyrillic_latin-600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('oswald-v57-cyrillic_latin-700.woff2') format('woff2'),
+       url('oswald-v57-cyrillic_latin-700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('cormorant-garamond-v21-cyrillic_latin-regular.woff2') format('woff2'),
+       url('cormorant-garamond-v21-cyrillic_latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('cormorant-garamond-v21-cyrillic_latin-italic.woff2') format('woff2'),
+       url('cormorant-garamond-v21-cyrillic_latin-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('cormorant-garamond-v21-cyrillic_latin-600.woff2') format('woff2'),
+       url('cormorant-garamond-v21-cyrillic_latin-600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('cormorant-garamond-v21-cyrillic_latin-700.woff2') format('woff2'),
+       url('cormorant-garamond-v21-cyrillic_latin-700.woff') format('woff');
+}

@@ -6,8 +6,9 @@
 <meta name="theme-color" content="#08090b">
 <title>ДЕЛО № 031 — Последний ход</title>
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/vendor/leaflet.css?v=11">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="fonts/fonts.css?v=13">
+<link rel="stylesheet" href="css/vendor/leaflet.css?v=13">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body class="tv-body">
 <header class="topbar">
@@ -17,13 +18,14 @@
     <span><i class="status-dot"></i><b id="connectionLabel">LOCAL MODE</b></span>
     <span id="clockLabel">02:20:00</span>
     <span class="tv-keys">ПУЛЬТ ТВ: СТРЕЛКИ · OK · RETURN</span>
+    <span class="tv-version" id="tvVersion"></span>
   </div>
 </header>
 <main id="app">
 
 <section id="introScreen" class="screen intro active">
   <div class="intro-poster">
-    <img class="poster-art" src="assets/images/noir-poster.jpg?v=11" alt="Авторская нуарная сцена: Ливерпуль ночью">
+    <img class="poster-art" src="assets/images/noir-poster.jpg?v=13" alt="Авторская нуарная сцена: Ливерпуль ночью">
     <div class="poster-kicker">AN UNSOLVED LIVERPOOL MURDER</div>
     <div class="poster-title">ПОСЛЕДНИЙ<br><em>ХОД</em></div>
     <div class="poster-rule"></div>
@@ -96,11 +98,52 @@
 <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
   <article class="modal"><button class="modal-close" id="modalClose" data-tv-focus aria-label="Закрыть">×</button><div id="modalContent"></div></article>
 </div>
-<script src="js/vendor/leaflet.js?v=11"></script>
-<script src="js/vendor/qrcode.min.js?v=11"></script>
-<script src="js/vendor/mqtt.min.js?v=11"></script>
-<script src="data/game.js?v=11"></script>
-<script src="js/firebase-config.js?v=6"></script>
-<script src="js/app.js?v=11"></script>
+<script src="js/vendor/leaflet.js?v=13"></script>
+<script src="js/vendor/qrcode.min.js?v=13"></script>
+<script src="js/vendor/mqtt.min.js?v=13"></script>
+<script src="data/game.js?v=13"></script>
+<script src="js/firebase-config.js?v=13"></script>
+<script>
+/* CASE 031 v13: диагностика для старых браузеров Tizen (ES5).
+   Если JS падает или app.js не запустился — текст ошибки появляется
+   на экране, а не остаётся в невидимой консоли. */
+(function () {
+  'use strict';
+  var box = null;
+  function ensureBox() {
+    if (box) return box;
+    box = document.createElement('div');
+    box.setAttribute('style', 'position:fixed;left:10px;right:10px;bottom:10px;z-index:99999;max-height:45%;overflow:auto;background:#4a0d0d;color:#ffe9e0;border:2px solid #ffb199;font:13px/1.5 Arial,sans-serif;padding:10px 14px;display:none;white-space:pre-wrap');
+    (document.body || document.documentElement).appendChild(box);
+    return box;
+  }
+  function show(msg) {
+    var b = ensureBox();
+    b.style.display = 'block';
+    b.appendChild(document.createTextNode(msg + '\n'));
+  }
+  window.onerror = function (msg, src, line, col) {
+    show('ОШИБКА: ' + msg + ' (' + (src || '?') + ':' + line + ')');
+  };
+  window.__case031Diag = show;
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var rd = document.getElementById('roomDisplay');
+      var ready = rd && rd.textContent && rd.textContent.indexOf('\u2014') === -1;
+      if (ready) return; /* app.js отработал — комната назначена */
+      var feats = [], d = document.createElement('div');
+      try {
+        d.style.display = 'grid'; feats.push('grid:' + (d.style.display === 'grid' ? 'да' : 'НЕТ'));
+        d.style.display = 'flex'; feats.push('flex:' + (d.style.display === 'flex' ? 'да' : 'НЕТ'));
+        d.style.gap = '4px'; feats.push('gap:' + (d.style.gap === '4px' ? 'да' : 'НЕТ'));
+        d.style.fontSize = 'clamp(10px,1vw,20px)'; feats.push('clamp:' + (d.style.fontSize.indexOf('clamp') === -1 ? 'да' : 'НЕТ'));
+        feats.push('vars:' + (window.CSS && CSS.supports && CSS.supports('--x', 'red') ? 'да' : '?'));
+      } catch (e) { feats.push('probe-err'); }
+      show('ДИАГНОСТИКА: заставка не запустилась.\nЭкран: ' + screen.width + 'x' + screen.height + '\nБраузер: ' + String(navigator.userAgent).slice(0, 140) + '\nПоддержка: ' + feats.join(' '));
+    }, 3500);
+  });
+})();
+</script>
+<script src="js/app.js?v=13"></script>
 </body>
 </html>

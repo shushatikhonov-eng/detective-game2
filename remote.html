@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08090b">
 <title>Пульт следственной группы · Дело № 031</title>
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="fonts/fonts.css?v=13">
+<link rel="stylesheet" href="css/style.css?v=13">
 <style>[hidden]{display:none!important}</style>
 </head>
 <body class="remote-body">
@@ -57,9 +58,18 @@
   </section>
 </div>
 </main>
-<script src="data/game.js?v=11"></script>
-<script src="js/firebase-config.js?v=6"></script>
-<script src="js/vendor/mqtt.min.js?v=11"></script>
-<script src="js/remote.js?v=11"></script>
+<script src="data/game.js?v=13"></script>
+<script src="js/firebase-config.js?v=13"></script>
+<script src="js/vendor/mqtt.min.js?v=13"></script>
+<script src="js/remote.js?v=13"></script>
+<script>
+/* v13: показ ошибок JS на экране (ES5) — вместо пустого экрана. */
+window.onerror = function (msg, src, line) {
+  var b = document.createElement('div');
+  b.setAttribute('style', 'position:fixed;left:8px;right:8px;bottom:8px;z-index:99999;background:#4a0d0d;color:#ffe9e0;border:2px solid #ffb199;font:13px/1.5 Arial,sans-serif;padding:10px 14px;white-space:pre-wrap');
+  b.textContent = 'ОШИБКА: ' + msg + ' (' + (src || '?') + ':' + line + ')';
+  document.body.appendChild(b);
+};
+</script>
 </body>
 </html>

@@ -7,7 +7,7 @@
   'use strict';
 
   var GAME = window.GAME;
-  var VERSION = '11';
+  var VERSION = '13';
 
   function $(id) { return document.getElementById(id); }
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
@@ -29,6 +29,7 @@
   }
   var room = (qp('room') || '').toUpperCase().replace(/[^A-Z0-9]/g, '') || randomRoom();
   $('roomDisplay').textContent = 'ROOM: ' + room;
+  var vChip = $('tvVersion'); if (vChip) vChip.textContent = 'v' + VERSION;
 
   /* ------------------- состояние ------------------- */
   var state = { chapter: 0, answers: {}, score: 0, started: false, notes: '', finished: false, view: null };
@@ -187,8 +188,8 @@
   function connectFirebase(onOk, onFail) {
     var cfg = window.FIREBASE_CONFIG;
     if (!cfg || !cfg.databaseURL) return onFail();
-    var base = 'https://www.gstatic.com/firebasejs/10.12.2/';
-    loadSeq([base + 'firebase-app-compat.js', base + 'firebase-auth-compat.js', base + 'firebase-database-compat.js'], 0, function (err) {
+    var base = 'https://www.gstatic.com/firebasejs/8.10.1/';
+    loadSeq([base + 'firebase-app.js', base + 'firebase-auth.js', base + 'firebase-database.js'], 0, function (err) {
       if (err || !window.firebase) return onFail();
       try {
         var app = firebase.initializeApp(cfg, 'case031-tv-' + room);
