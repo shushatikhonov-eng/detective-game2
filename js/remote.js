@@ -32,7 +32,7 @@
   $('remoteIntroText').textContent=chapter?.intro||'';
   $('remoteSceneText').innerHTML=chapter?.scene||'';
   if(chapter){
-   $('remoteEvidence').innerHTML=chapter.evidence.map((e,i)=>`<button class="remote-evidence" data-evidence="${esc(e.id)}"><img src="${esc(e.image)}" alt=""><span class="remote-evidence-copy"><small>${esc(e.type)}</small><strong>${esc(e.title)}</strong><em>ОТКРЫТЬ НА ТВ ↗</em></span></button>`).join('');
+   $('remoteEvidence').innerHTML=chapter.evidence.map((e,i)=>`<button class="remote-evidence" data-evidence="${esc(e.id)}"><span class="remote-evidence-number">${String(i+1).padStart(2,'0')}</span><span class="remote-evidence-copy"><small>${esc(e.type)}</small><strong>${esc(e.title)}</strong><em>ОТКРЫТЬ НА ТВ ↗</em></span><span class="remote-evidence-arrow">↗</span></button>`).join('');
   }else $('remoteEvidence').innerHTML='';
   $('remoteEvidence').querySelectorAll('[data-evidence]').forEach(b=>b.onclick=()=>send({type:'open_evidence',id:b.dataset.evidence}));
   if(finished){$('remoteQuestion').innerHTML='<h3>Дело завершено</h3><p class="remote-status">Итоговая версия команды зафиксирована. Юридический итог показан на телевизоре.</p>';}
