@@ -55,3 +55,6 @@
 .remote-footer{text-align:center;padding:18px 0;color:#777;font:9px 'Oswald';letter-spacing:.18em}
 @media(min-width:600px){.remote-evidence-grid{grid-template-columns:1fr 1fr}.remote-sources-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:390px){.remote-card{padding:15px}.remote-evidence img{width:92px}.remote-source img{width:88px}.remote-toolbar button{font-size:10px;padding:10px 7px}}
+
+/* Chapter-aware evidence map */
+.map-focus-legend{display:flex;gap:22px;flex-wrap:wrap;margin:0 0 12px;font:11px 'Oswald';letter-spacing:.08em;text-transform:uppercase;color:#555}.map-focus-legend span{display:flex;align-items:center;gap:8px}.map-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#888;opacity:.55}.map-dot.active{width:13px;height:13px;background:#a52e2e;opacity:1;box-shadow:0 0 0 4px #a52e2e22}.map-active-label{font:600 11px Arial;color:#7d2020;background:#eee9df;border:1px solid #7d2020;border-radius:2px;padding:3px 5px;box-shadow:0 1px 5px #0005}
