@@ -10,11 +10,6 @@
   if(db)db.ref('rooms/'+room+'/events/latest').set({...command,ts:Date.now()}).catch(e=>status('Ошибка отправки: '+e.message));
   else status('Нет связи с Firebase. Нажмите «Подключиться».');
  }
- function renderSources(){
-  // На пульте источники остаются компактным текстовым списком без миниатюр.
-  $('remoteSources').innerHTML=(GAME.sources||[]).map((s,i)=>`<a class="remote-source remote-source-text" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="remote-source-copy"><small>ИСТОЧНИК ${String(i+1).padStart(2,'0')}</small><strong>${esc(s.name)}</strong><em>${esc(s.note||'')}</em><b>ОТКРЫТЬ ИСТОЧНИК ↗</b></span></a>`).join('');
- }
-
  function render(s){
   if(!s)return;
   const chapters=GAME.chapters||[],chapter=chapters[Number(s.chapter)||0],idx=Number(s.chapter)||0;

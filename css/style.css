@@ -83,3 +83,9 @@
  .modal .hero-img{float:none!important;width:100%!important;max-width:100%!important;max-height:42vh!important;margin:0 auto 20px!important;object-fit:contain!important;}
  .modal p{font-size:20px!important;}
 }
+
+/* Remote: text-only evidence list. Images belong on the shared TV screen, never on the iPhone remote. */
+#remoteEvidence img, #remoteEvidence picture, #remoteEvidence .remote-evidence-image { display:none !important; }
+#remoteEvidence .remote-evidence { display:flex !important; align-items:center; gap:12px; min-height:64px; padding:13px 15px; }
+#remoteEvidence .remote-evidence-copy { flex:1; min-width:0; }
+#remoteEvidence .remote-evidence-copy em { display:block; }
