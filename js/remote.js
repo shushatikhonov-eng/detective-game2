@@ -11,9 +11,10 @@
   else status('Нет связи с Firebase. Нажмите «Подключиться».');
  }
  function renderSources(){
-  const imgs=['noir-street.jpg','noir-telephone.jpg','noir-message.jpg','noir-map.jpg','noir-courtroom.jpg','noir-casefile.jpg'];
-  $('remoteSources').innerHTML=(GAME.sources||[]).map((s,i)=>`<a class="remote-source" href="${esc(s.url)}" target="_blank" rel="noopener"><img src="assets/images/${imgs[i%imgs.length]}" alt=""><span class="remote-source-copy"><small>ИСТОЧНИК ${String(i+1).padStart(2,'0')}</small><strong>${esc(s.name)}</strong><em>${esc(s.note||'')}</em><b>ОТКРЫТЬ ИСТОЧНИК ↗</b></span></a>`).join('');
+  // На пульте источники остаются компактным текстовым списком без миниатюр.
+  $('remoteSources').innerHTML=(GAME.sources||[]).map((s,i)=>`<a class="remote-source remote-source-text" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="remote-source-copy"><small>ИСТОЧНИК ${String(i+1).padStart(2,'0')}</small><strong>${esc(s.name)}</strong><em>${esc(s.note||'')}</em><b>ОТКРЫТЬ ИСТОЧНИК ↗</b></span></a>`).join('');
  }
+
  function render(s){
   if(!s)return;
   const chapters=GAME.chapters||[],chapter=chapters[Number(s.chapter)||0],idx=Number(s.chapter)||0;
